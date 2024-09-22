@@ -35,6 +35,7 @@ public class TestIndexMapper {
 
     @Test
     public void testCreateIndex() {
+        testEntityIndexMapper.deleteIndex();
         boolean result = testEntityIndexMapper.createIndex();
         Assertions.assertTrue(result);
 
