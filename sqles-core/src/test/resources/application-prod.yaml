@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    druid:
+      data:
+        username: root
+        password: 123
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        type: com.alibaba.druid.pool.DruidDataSource
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+
+
+db2cache:
+  # 数据库同步表配置目录
+  table-conf-dir: db2cache_config
+  # 数据存储段的记录数
+  store-segment-size: 8096
+  # 数据存储段总数
+  store-block-size: 8096
+  # 中间查询结果，单个段存储的记录数
+  compute-segment-size: 64
+  # 中间查询结果，数据存储段总数
+  compute-block-size: 64
+  # 数据从数据库同步线程数
+  data-syn-threads: 1
+  # 数据存储目录，缓存数据会刷新到磁盘，可能会丢失
+  data-store-dir: data
+  # 数据同步，一批查询的记录数
+  syn-segment-size: 100000

@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sqles.demo.mapper.TestEntityMapper">
+  <resultMap id="BaseResultMap" type="com.sqles.demo.domain.TestEntity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="text_field" jdbcType="VARCHAR" property="textField" />
+    <result column="keyword_field" jdbcType="VARCHAR" property="keywordField" />
+    <result column="bool_field" jdbcType="BOOLEAN" property="boolField" />
+    <result column="byte_field" jdbcType="TINYINT" property="byteField" />
+    <result column="short_field" jdbcType="SMALLINT" property="shortField" />
+    <result column="integer_field" jdbcType="INTEGER" property="integerField" />
+    <result column="long_field" jdbcType="BIGINT" property="longField" />
+    <result column="null_value" jdbcType="SMALLINT" property="nullValue" />
+    <result column="half_float_field" jdbcType="REAL" property="halfFloatField" />
+    <result column="scaled_float_field" jdbcType="DECIMAL" property="scaledFloatField" />
+    <result column="float_field" jdbcType="REAL" property="floatField" />
+    <result column="double_field" jdbcType="DOUBLE" property="doubleField" />
+    <result column="string_date_field" jdbcType="VARCHAR" property="stringDateField" />
+    <result column="date_field" jdbcType="TIMESTAMP" property="dateField" />
+    <result column="long_date_field" jdbcType="BIGINT" property="longDateField" />
+    <result column="time_field" jdbcType="TIME" property="timeField" />
+    <result column="timestamp_field" jdbcType="TIMESTAMP" property="timestampField" />
+    <result column="local_time_field" jdbcType="TIME" property="localTimeField" />
+    <result column="local_date_time_field" jdbcType="TIMESTAMP" property="localDateTimeField" />
+    <result column="instant_field" jdbcType="TIMESTAMP" property="instantField" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, text_field, keyword_field, bool_field, byte_field, short_field, integer_field, 
+    long_field, null_value, half_float_field, scaled_float_field, float_field, double_field, 
+    string_date_field, date_field, long_date_field, time_field, timestamp_field, local_time_field, 
+    local_date_time_field, instant_field
+  </sql>
+  <select id="selectByExample" parameterType="com.sqles.demo.domain.TestEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from test_entity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test_entity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from test_entity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sqles.demo.domain.TestEntityExample">
+    delete from test_entity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sqles.demo.domain.TestEntity">
+<!--    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+    insert into test_entity (id,text_field, keyword_field, bool_field,
+      byte_field, short_field, integer_field, 
+      long_field, null_value, half_float_field, 
+      scaled_float_field, float_field, double_field, 
+      string_date_field, date_field, long_date_field, 
+      time_field, timestamp_field, local_time_field, 
+      local_date_time_field, instant_field)
+    values ( #{id,jdbcType=BIGINT}, #{textField,jdbcType=VARCHAR}, #{keywordField,jdbcType=VARCHAR}, #{boolField,jdbcType=BIT},
+      #{byteField,jdbcType=TINYINT}, #{shortField,jdbcType=SMALLINT}, #{integerField,jdbcType=INTEGER}, 
+      #{longField,jdbcType=BIGINT}, #{nullValue,jdbcType=SMALLINT}, #{halfFloatField,jdbcType=REAL}, 
+      #{scaledFloatField,jdbcType=DECIMAL}, #{floatField,jdbcType=REAL}, #{doubleField,jdbcType=DOUBLE}, 
+      #{stringDateField,jdbcType=VARCHAR}, #{dateField,jdbcType=TIMESTAMP}, #{longDateField,jdbcType=BIGINT}, 
+      #{timeField,jdbcType=TIME}, #{timestampField,jdbcType=TIMESTAMP}, #{localTimeField,jdbcType=TIME}, 
+      #{localDateTimeField,jdbcType=TIMESTAMP}, #{instantField,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sqles.demo.domain.TestEntity">
+<!--    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+    insert into test_entity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="textField != null">
+        id,
+      </if>
+      <if test="textField != null">
+        text_field,
+      </if>
+      <if test="keywordField != null">
+        keyword_field,
+      </if>
+      <if test="boolField != null">
+        bool_field,
+      </if>
+      <if test="byteField != null">
+        byte_field,
+      </if>
+      <if test="shortField != null">
+        short_field,
+      </if>
+      <if test="integerField != null">
+        integer_field,
+      </if>
+      <if test="longField != null">
+        long_field,
+      </if>
+      <if test="nullValue != null">
+        null_value,
+      </if>
+      <if test="halfFloatField != null">
+        half_float_field,
+      </if>
+      <if test="scaledFloatField != null">
+        scaled_float_field,
+      </if>
+      <if test="floatField != null">
+        float_field,
+      </if>
+      <if test="doubleField != null">
+        double_field,
+      </if>
+      <if test="stringDateField != null">
+        string_date_field,
+      </if>
+      <if test="dateField != null">
+        date_field,
+      </if>
+      <if test="longDateField != null">
+        long_date_field,
+      </if>
+      <if test="timeField != null">
+        time_field,
+      </if>
+      <if test="timestampField != null">
+        timestamp_field,
+      </if>
+      <if test="localTimeField != null">
+        local_time_field,
+      </if>
+      <if test="localDateTimeField != null">
+        local_date_time_field,
+      </if>
+      <if test="instantField != null">
+        instant_field,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="textField != null">
+        #{textField,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordField != null">
+        #{keywordField,jdbcType=VARCHAR},
+      </if>
+      <if test="boolField != null">
+        #{boolField,jdbcType=BIT},
+      </if>
+      <if test="byteField != null">
+        #{byteField,jdbcType=TINYINT},
+      </if>
+      <if test="shortField != null">
+        #{shortField,jdbcType=SMALLINT},
+      </if>
+      <if test="integerField != null">
+        #{integerField,jdbcType=INTEGER},
+      </if>
+      <if test="longField != null">
+        #{longField,jdbcType=BIGINT},
+      </if>
+      <if test="nullValue != null">
+        #{nullValue,jdbcType=SMALLINT},
+      </if>
+      <if test="halfFloatField != null">
+        #{halfFloatField,jdbcType=REAL},
+      </if>
+      <if test="scaledFloatField != null">
+        #{scaledFloatField,jdbcType=DECIMAL},
+      </if>
+      <if test="floatField != null">
+        #{floatField,jdbcType=REAL},
+      </if>
+      <if test="doubleField != null">
+        #{doubleField,jdbcType=DOUBLE},
+      </if>
+      <if test="stringDateField != null">
+        #{stringDateField,jdbcType=VARCHAR},
+      </if>
+      <if test="dateField != null">
+        #{dateField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longDateField != null">
+        #{longDateField,jdbcType=BIGINT},
+      </if>
+      <if test="timeField != null">
+        #{timeField,jdbcType=TIME},
+      </if>
+      <if test="timestampField != null">
+        #{timestampField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="localTimeField != null">
+        #{localTimeField,jdbcType=TIME},
+      </if>
+      <if test="localDateTimeField != null">
+        #{localDateTimeField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="instantField != null">
+        #{instantField,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sqles.demo.domain.TestEntityExample" resultType="java.lang.Long">
+    select count(*) from test_entity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update test_entity
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
+      </if>
+      <if test="row.textField != null">
+        text_field = #{row.textField,jdbcType=VARCHAR},
+      </if>
+      <if test="row.keywordField != null">
+        keyword_field = #{row.keywordField,jdbcType=VARCHAR},
+      </if>
+      <if test="row.boolField != null">
+        bool_field = #{row.boolField,jdbcType=BIT},
+      </if>
+      <if test="row.byteField != null">
+        byte_field = #{row.byteField,jdbcType=TINYINT},
+      </if>
+      <if test="row.shortField != null">
+        short_field = #{row.shortField,jdbcType=SMALLINT},
+      </if>
+      <if test="row.integerField != null">
+        integer_field = #{row.integerField,jdbcType=INTEGER},
+      </if>
+      <if test="row.longField != null">
+        long_field = #{row.longField,jdbcType=BIGINT},
+      </if>
+      <if test="row.nullValue != null">
+        null_value = #{row.nullValue,jdbcType=SMALLINT},
+      </if>
+      <if test="row.halfFloatField != null">
+        half_float_field = #{row.halfFloatField,jdbcType=REAL},
+      </if>
+      <if test="row.scaledFloatField != null">
+        scaled_float_field = #{row.scaledFloatField,jdbcType=DECIMAL},
+      </if>
+      <if test="row.floatField != null">
+        float_field = #{row.floatField,jdbcType=REAL},
+      </if>
+      <if test="row.doubleField != null">
+        double_field = #{row.doubleField,jdbcType=DOUBLE},
+      </if>
+      <if test="row.stringDateField != null">
+        string_date_field = #{row.stringDateField,jdbcType=VARCHAR},
+      </if>
+      <if test="row.dateField != null">
+        date_field = #{row.dateField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.longDateField != null">
+        long_date_field = #{row.longDateField,jdbcType=BIGINT},
+      </if>
+      <if test="row.timeField != null">
+        time_field = #{row.timeField,jdbcType=TIME},
+      </if>
+      <if test="row.timestampField != null">
+        timestamp_field = #{row.timestampField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.localTimeField != null">
+        local_time_field = #{row.localTimeField,jdbcType=TIME},
+      </if>
+      <if test="row.localDateTimeField != null">
+        local_date_time_field = #{row.localDateTimeField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.instantField != null">
+        instant_field = #{row.instantField,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update test_entity
+    set id = #{row.id,jdbcType=BIGINT},
+      text_field = #{row.textField,jdbcType=VARCHAR},
+      keyword_field = #{row.keywordField,jdbcType=VARCHAR},
+      bool_field = #{row.boolField,jdbcType=BIT},
+      byte_field = #{row.byteField,jdbcType=TINYINT},
+      short_field = #{row.shortField,jdbcType=SMALLINT},
+      integer_field = #{row.integerField,jdbcType=INTEGER},
+      long_field = #{row.longField,jdbcType=BIGINT},
+      null_value = #{row.nullValue,jdbcType=SMALLINT},
+      half_float_field = #{row.halfFloatField,jdbcType=REAL},
+      scaled_float_field = #{row.scaledFloatField,jdbcType=DECIMAL},
+      float_field = #{row.floatField,jdbcType=REAL},
+      double_field = #{row.doubleField,jdbcType=DOUBLE},
+      string_date_field = #{row.stringDateField,jdbcType=VARCHAR},
+      date_field = #{row.dateField,jdbcType=TIMESTAMP},
+      long_date_field = #{row.longDateField,jdbcType=BIGINT},
+      time_field = #{row.timeField,jdbcType=TIME},
+      timestamp_field = #{row.timestampField,jdbcType=TIMESTAMP},
+      local_time_field = #{row.localTimeField,jdbcType=TIME},
+      local_date_time_field = #{row.localDateTimeField,jdbcType=TIMESTAMP},
+      instant_field = #{row.instantField,jdbcType=TIMESTAMP}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sqles.demo.domain.TestEntity">
+    update test_entity
+    <set>
+      <if test="textField != null">
+        text_field = #{textField,jdbcType=VARCHAR},
+      </if>
+      <if test="keywordField != null">
+        keyword_field = #{keywordField,jdbcType=VARCHAR},
+      </if>
+      <if test="boolField != null">
+        bool_field = #{boolField,jdbcType=BIT},
+      </if>
+      <if test="byteField != null">
+        byte_field = #{byteField,jdbcType=TINYINT},
+      </if>
+      <if test="shortField != null">
+        short_field = #{shortField,jdbcType=SMALLINT},
+      </if>
+      <if test="integerField != null">
+        integer_field = #{integerField,jdbcType=INTEGER},
+      </if>
+      <if test="longField != null">
+        long_field = #{longField,jdbcType=BIGINT},
+      </if>
+      <if test="nullValue != null">
+        null_value = #{nullValue,jdbcType=SMALLINT},
+      </if>
+      <if test="halfFloatField != null">
+        half_float_field = #{halfFloatField,jdbcType=REAL},
+      </if>
+      <if test="scaledFloatField != null">
+        scaled_float_field = #{scaledFloatField,jdbcType=DECIMAL},
+      </if>
+      <if test="floatField != null">
+        float_field = #{floatField,jdbcType=REAL},
+      </if>
+      <if test="doubleField != null">
+        double_field = #{doubleField,jdbcType=DOUBLE},
+      </if>
+      <if test="stringDateField != null">
+        string_date_field = #{stringDateField,jdbcType=VARCHAR},
+      </if>
+      <if test="dateField != null">
+        date_field = #{dateField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longDateField != null">
+        long_date_field = #{longDateField,jdbcType=BIGINT},
+      </if>
+      <if test="timeField != null">
+        time_field = #{timeField,jdbcType=TIME},
+      </if>
+      <if test="timestampField != null">
+        timestamp_field = #{timestampField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="localTimeField != null">
+        local_time_field = #{localTimeField,jdbcType=TIME},
+      </if>
+      <if test="localDateTimeField != null">
+        local_date_time_field = #{localDateTimeField,jdbcType=TIMESTAMP},
+      </if>
+      <if test="instantField != null">
+        instant_field = #{instantField,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sqles.demo.domain.TestEntity">
+    update test_entity
+    set text_field = #{textField,jdbcType=VARCHAR},
+      keyword_field = #{keywordField,jdbcType=VARCHAR},
+      bool_field = #{boolField,jdbcType=BIT},
+      byte_field = #{byteField,jdbcType=TINYINT},
+      short_field = #{shortField,jdbcType=SMALLINT},
+      integer_field = #{integerField,jdbcType=INTEGER},
+      long_field = #{longField,jdbcType=BIGINT},
+      null_value = #{nullValue,jdbcType=SMALLINT},
+      half_float_field = #{halfFloatField,jdbcType=REAL},
+      scaled_float_field = #{scaledFloatField,jdbcType=DECIMAL},
+      float_field = #{floatField,jdbcType=REAL},
+      double_field = #{doubleField,jdbcType=DOUBLE},
+      string_date_field = #{stringDateField,jdbcType=VARCHAR},
+      date_field = #{dateField,jdbcType=TIMESTAMP},
+      long_date_field = #{longDateField,jdbcType=BIGINT},
+      time_field = #{timeField,jdbcType=TIME},
+      timestamp_field = #{timestampField,jdbcType=TIMESTAMP},
+      local_time_field = #{localTimeField,jdbcType=TIME},
+      local_date_time_field = #{localDateTimeField,jdbcType=TIMESTAMP},
+      instant_field = #{instantField,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
