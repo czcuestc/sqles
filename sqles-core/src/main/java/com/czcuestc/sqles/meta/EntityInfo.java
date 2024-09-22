@@ -244,14 +244,14 @@ public class EntityInfo {
                 fieldInfo.setIndexedField(true);
             }
 
-            if (annotation instanceof RangeField) {
-                RangeField field = (RangeField) annotation;
-                fieldInfo.setFieldType(field.type());
-                fieldInfo.setIndex(field.index());
-                fieldInfo.setStore(field.store());
-
-                fieldInfo.setIndexedField(true);
-            }
+//            if (annotation instanceof RangeField) {
+//                RangeField field = (RangeField) annotation;
+//                fieldInfo.setFieldType(field.type());
+//                fieldInfo.setIndex(field.index());
+//                fieldInfo.setStore(field.store());
+//
+//                fieldInfo.setIndexedField(true);
+//            }
 
             if (annotation instanceof KeyWordField) {
                 KeyWordField field = (KeyWordField) annotation;
