@@ -11,10 +11,4 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 public @interface Document {
     String value() default "";
-
-    /**
-     * 是否开启souce存储，若为false,则source被禁用
-     * @return
-     */
-    boolean source() default true;
 }
