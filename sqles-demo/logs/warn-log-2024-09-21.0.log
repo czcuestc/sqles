@@ -1,5 +1,0 @@
-2024-09-21 00:00:27.646 [main] WARN  org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was specified but matching resources are not found.
-2024-09-21 00:08:06.345 [main] WARN  org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was specified but matching resources are not found.
-2024-09-21 00:10:01.584 [main] WARN  org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was specified but matching resources are not found.
-2024-09-21 00:11:13.220 [main] WARN  org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was specified but matching resources are not found.
-2024-09-21 00:17:33.169 [main] WARN  org.mybatis.spring.SqlSessionFactoryBean - Property 'mapperLocations' was specified but matching resources are not found.
