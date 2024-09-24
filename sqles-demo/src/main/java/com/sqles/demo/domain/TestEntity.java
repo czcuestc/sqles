@@ -21,21 +21,24 @@ import java.util.Date;
 public class TestEntity implements Serializable {
     private static final long serialVersionUID = -190806307024075427L;
     /**
-     * id字段，唯一标识记录，可以根据该字段快速查找记录
-     * id字段的值需要设置，若id不设置，操作记录将会失败。
+     * id字段，作为实体对象的唯一标识，可以根据该字段快速查找记录。
+     * id字段的值必须设置，若id不设置，则插入，更新，删除操作会失败。
      */
     @Id
     @LongField
     private Long id;
 
     /**
-     * 添加了Highlight注解，默认会将搜索高亮结果内容放入highlight字段，highlight字段变量名
-     * 默认为highlight+当前字段名，camel命名
+     * 添加了Highlight注解，默认会将搜索高亮结果内容放入highlight字段，highlight字段变量名默认为highlight+当前字段名，camel命名
+     *
      */
     @Highlight
     @TextField(analyzer = Analyzer.IK_SMART)
     private String textField;
 
+    /**
+     * highlight字段
+     */
     private String highlightTextField;
 
     @KeyWordField
@@ -100,7 +103,7 @@ public class TestEntity implements Serializable {
     private Instant instantField;
 
     /**
-     * 记录score会默认放入该字段，也可以用Score字段指定。
+     * 记录score会默认放入该字段，也可以用@Score注解指定。
      */
     private float score;
 
