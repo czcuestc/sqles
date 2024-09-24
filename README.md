@@ -28,5 +28,8 @@ SqlEs是Elasticsearch的客户端JDBC驱动程序，支持采用sql语法操作E
 
 <font style="color:rgb(50, 50, 50);">        SqlEs采用注解配置索引mapping信息，支持细粒度的索引字段定义。</font>
 
+## License
+SqlEs is licensed under the AGPL-3.0 license. See the [LICENSE](https://github.com/czcuestc/sqles/blob/master/LICENSE) file for details.
+
 
 
