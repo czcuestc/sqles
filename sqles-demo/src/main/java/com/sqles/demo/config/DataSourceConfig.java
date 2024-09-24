@@ -23,20 +23,4 @@ public class DataSourceConfig {
         DataSource dataSource= DruidDataSourceBuilder.create().build();
         return dataSource;
     }
-
-//    @Bean(name = "sqles")
-//    @ConfigurationProperties(prefix = "spring.datasource.sqles")
-//    public DruidDataSource dataSource() throws SQLException {
-//        DruidDataSource dataSource= new DruidDataSource();
-//        dataSource.init();
-//        return dataSource;
-//    }
-//
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-//        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-//        factoryBean.setDataSource(dataSource);
-//        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:**/*.xml"));
-//        return factoryBean.getObject();
-//    }
 }

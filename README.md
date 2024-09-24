@@ -2,7 +2,7 @@
 
 SqlEs是Elasticsearch的客户端JDBC驱动程序，支持采用sql语法操作Elasticsearch。SqlEs构建在RestHighLevelClient，屏蔽了RestHighLevelClient接口的复杂度，可以像使用数据一样使用Elasticsearch。
 
-
+[社区](http://112.124.55.179:8080/)
 
 ### 架构
 
